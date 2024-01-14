@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Online Appointment System</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      margin: 0 auto;
+      width: 50%;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #000;
+      color: #fff;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    #error-message {
+      color: red;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>The Gentlemen Barbershop</h1>
+  <h1>Book an Appointment</h1>
+  
+  <form action="https://formsubmit.co/thegentlemenb@gmail.com" method="post" id="appointmentForm">
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="email" placeholder="Your email" required>
+    <select name="service" required>
+      <option value="">Select a service</option>
+      <option value="haircut">Haircut</option>
+      <option value="face shave">Face Shave</option>
+      <option value="threading">Threading</option>
+    </select>
+    <input type="date" name="date" placeholder="Date" required>
+    <input type="time" name="time" placeholder="Time" required>
+	
+	<p> Please wait for the barber's email confirmation before your booking is finalized. They will respond to the email address you provided in the fill-out page. </p>
+	<p> To ensure your appointment availability, please book at least 1 week to 2 days in advance. </p>
+	<p> To schedule another appointment, please navigate back two pages using your browser's back button. </p>
+    <p> Barber available between 12:00 PM and 4:00 PM only. </p>
+	
+    <button type="submit">Book Appointment</button>
+	
+
+
+    <div id="error-message"></div>
+  </form>
+
+  <script>
+    const appointmentForm = document.getElementById('appointmentForm');
+    appointmentForm.addEventListener('submit', (event) => {
+      if (!isFormComplete()) {
+        event.preventDefault();
+        displayErrorMessage('Please fill out all required fields.');
+      }
+    });
+
+    function isFormComplete() {
+      const nameInput = document.querySelector('input[name="name"]');
+      const emailInput = document.querySelector('input[name="email"]');
+      const serviceSelect = document.querySelector('select[name="service"]');
+      const dateInput = document.querySelector('input[name="date"]');
+      const timeInput = document.querySelector('input[name="time"]');
+
+      return nameInput.value && emailInput.value && serviceSelect.value && dateInput.value && timeInput.value;
+    }
+
+    function displayErrorMessage(message) {
+      const errorMessageElement = document.getElementById('error-message');
+      errorMessageElement.textContent = message;
+    }
+  </script>
+</body>
+</html>
